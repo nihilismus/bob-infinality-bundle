@@ -92,6 +92,7 @@ zcat $CWD/fontconfig.dejavu.diff.gz | patch -p1 --verbose || exit 1
 # index ugly bitmapped fonts):
 zcat $CWD/fontconfig.font.dir.list.diff.gz | patch -p1 --verbose --backup --suffix=.orig || exit 1
 
+# infinality-bundle
 aclocal
 libtoolize -f
 automake --add-missing -fi
@@ -199,8 +200,8 @@ fi
 # infinality-bundle
 install -m0644 $INFINALITY_BUNDLE/fontconfig_patches/29-replace-bitmap-fonts.conf \
   $PKG/etc/fonts/conf.avail/29-replace-bitmap-fonts.conf
-install -m0755 $INFINALITY_BUNDLE/freetype/infinality-settings.sh \
-  $PKG/usr/doc/fontconfig-$VERSION/
+install -D -m0755 $INFINALITY_BUNDLE/freetype/infinality-settings.sh \
+  $PKG/etc/profile.d/infinality-settings.sh
 cp -r $INFINALITY_BUNDLE/doc/fontconfig-infinality-ultimate-git \
   $PKG/usr/doc/fontconfig-$VERSION/
 
