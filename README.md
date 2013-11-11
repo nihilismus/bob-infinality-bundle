@@ -16,17 +16,16 @@ Source code: https://github.com/bohoomil/fontconfig-ultimate
 ## Using
 
 1.  Clone this repository
-
-```
-root@darkstar:~:/tmp# git clone https://github.com/nihilismus/bob-infinality-bundle
-```
+  ```
+  root@darkstar:~:/tmp# git clone https://github.com/nihilismus/bob-infinality-bundle
+  ```
 
 2.  Build, remove and install packages following this order: first `source/l/freetype`, then
-    `source/x/fontconfig` and finally `source/l/cairo`.
+    `source/x/fontconfig` and finally `source/l/cairo` or just execute as root `install.sh`.
 
 ## Notes
 
-*  At this moment these SlackBuilds are from and for Slackware Linux -current (14.1)
+*  At this moment these SlackBuilds are from and for Slackware Linux 14.1
 *  I tried to make the minimal modificactions to the originals Slackbuilds.
 *  There is not need to select a type of font rendering (Windows, Apple or Ubuntu)
    since the *"aim of infinality-bundle is to make use of the vast potential hidden
