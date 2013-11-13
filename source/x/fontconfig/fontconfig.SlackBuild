@@ -20,8 +20,6 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# set -e
-
 VERSION=${VERSION:-$(echo fontconfig-*.tar.?z* | rev | cut -f 3- -d . | cut -f 1 -d - | rev)}
 BUILD=${BUILD:-1}
 
@@ -77,7 +75,7 @@ PATCHES="01-configure.patch 02-configure.ac.patch 03-Makefile.in.patch 04-Makefi
 for patch in $PATCHES; do
     echo "Applying:"
     echo "$INFINALITY_BUNDLE/fontconfig_patches/$patch ..."
-    patch -p1 < $INFINALITY_BUNDLE/fontconfig_patches/$patch
+    patch -p1 < $INFINALITY_BUNDLE/fontconfig_patches/$patch || exit 1
 done
 
 # The wonderful extended version of the font so generously
@@ -199,11 +197,9 @@ fi
 
 # infinality-bundle
 install -m0644 $INFINALITY_BUNDLE/fontconfig_patches/29-replace-bitmap-fonts.conf \
-  $PKG/etc/fonts/conf.avail/29-replace-bitmap-fonts.conf
-install -D -m0755 $INFINALITY_BUNDLE/freetype/infinality-settings.sh \
-  $PKG/etc/profile.d/infinality-settings.sh
-cp -r $INFINALITY_BUNDLE/doc/fontconfig-infinality-ultimate-git \
-  $PKG/usr/doc/fontconfig-$VERSION/
+  $PKG/etc/fonts/conf.avail/29-replace-bitmap-fonts.conf || exit 1
+cp -r $INFINALITY_BUNDLE/doc/fontconfig-infinality-ultimate \
+  $PKG/usr/doc/fontconfig-$VERSION/ || exit 1
 
 mkdir $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc

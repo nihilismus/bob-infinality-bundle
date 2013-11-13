@@ -10,8 +10,8 @@ careful with the result in your system.
 rendering offered by infinality patches and fontconfig rules known as
 fontconfig-infinality-ultimate."*
 
-Project: http://bohoomil.cu.cc
-Source code: https://github.com/bohoomil/fontconfig-ultimate
+*  Project: https://wiki.archlinux.org/index.php/Infinality-bundle%2Bfonts
+*  Source code: https://github.com/bohoomil/fontconfig-ultimate
 
 ## Using
 
@@ -32,30 +32,24 @@ Source code: https://github.com/bohoomil/fontconfig-ultimate
    in native Linux font rendering back-end"*. This does not mean you can not
    configure some aspects of the font rendering, please check:
    *  `/etc/profile.d/infinality-settings.sh`
-   *  http://bohoomil.cu.cc/#anchor-6
-   *  `/usr/doc/fontconfig-*/fontconfig-infinality-ultimate-git`
-*  `bob-sources.sh` is an script to mirror the official SlackBuilds, so you do not
-   may use it, at least you are trying to test some new official Slackbuilds ;)
-*  Check the next screenshots to see the result:
+   *  `/usr/doc/fontconfig-2.10.93/fontconfig-infinality-ultimate`
+*  You can see the differences between the default font rendering and the patched one:
    *  Default: https://www.dropbox.com/s/xiyeyvs457nb1um/slackware-14.1-default-font.png
    *  Patched: https://www.dropbox.com/s/awqgc8wg3djviqe/slackware-14.1-patched-font.png
+*  Backup /etc/fonts/ before you install fontconfig and remove any personal configuration
+   (~/.fonts.conf, ~/.fonts.conf.d or ~/.config/fontconfig) to avoid any issue.
 
 ## Freetype patches
 
 *  Location: source/l/freetype/infinality-bundle
-*  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/pkgbuild/01_freetype2-iu-2.5.0.1-7
+*  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/pkgbuild/01_freetype2-iu-2.5.0.1-8
 
 ## Fontconfig patches
 
 *  Location: source/x/fontconfig/infinality-bundle
-*  Origin: https://github.com/bohoomil/fontconfig-ultimate
+*  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/infinality-bundle/infinality-bundle-src/2.10.93-2.5.0.1
 
 ## Cairo patches
 
 *  Location: source/l/cairo/infinality-bundle
 *  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/pkgbuild/03_cairo-iu-1.12.16-3
-
-## Contact
-
-Antonio Hernández Blas
-hba.nihilismus@gmail.com
