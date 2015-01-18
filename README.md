@@ -20,9 +20,9 @@ fontconfig-infinality-ultimate."*
   root@darkstar:~:/tmp# git clone https://github.com/nihilismus/bob-infinality-bundle
   ```
 
-2.  Download the sources using `bob-sources.sh`.
+2. Download the sources using `bob-sources.sh`
 
-3. Build and install the packages using `install.sh`.
+3. Build and install the packages using `install.sh`
 
 ## Notes
 
