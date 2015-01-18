@@ -34,9 +34,6 @@ echo "Copying modifications..."
   cp -r modifications/fontconfig/* source/x/fontconfig/
   cp -r modifications/cairo/* source/l/cairo
 
-echo "Patching SlackBuilds..."
-  patch -Np0 -i patches/source/freetype/freetype.SlackBuild.patch
-  patch -Np0 -i source/x/fontconfig/fontconfig.SlackBuild.patch
-  patch -Np0 -i source/l/cairo/cairo.SlackBuild.patch
+echo "Done."
 
 #EOF

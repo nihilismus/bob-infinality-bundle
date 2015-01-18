@@ -9,6 +9,11 @@ rm -rf $TMP
 # Number of CPUs + 1
 export NUMJOBS=$(expr $(lscpu | grep -E '^CPU\(s\):' | xargs | cut -d ' ' -f 2) + 1)
 
+echo "Patching SlackBuilds..."
+patch -Np0 -i patches/source/freetype/freetype.SlackBuild.patch
+patch -Np0 -i source/x/fontconfig/fontconfig.SlackBuild.patch
+patch -Np0 -i source/l/cairo/cairo.SlackBuild.patch
+
 echo "###"
 echo "### Building: patches/source/freetype ..."
 echo "###"
