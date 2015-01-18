@@ -1,0 +1,25 @@
+--- source/l/cairo/cairo.SlackBuild	2013-02-21 04:22:19.000000000 +0530
++++ source/l/cairo/cairo.SlackBuild.new	2015-01-18 13:48:24.038958000 +0530
+@@ -20,6 +20,7 @@
+ #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
++set -e
+ 
+ PKGNAM=cairo
+ VERSION=${VERSION:-$(echo $PKGNAM-*.tar.?z* | rev | cut -f 3- -d . | cut -f 1 -d - | rev)}
+@@ -68,6 +69,14 @@
+   \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+   -exec chmod 644 {} \;
+ 
++INFINALITY_BUNDLE=$CWD/infinality-bundle
++PATCHES="cairo-respect-fontconfig.patch cairo-1.12.8-expose_snapshot-1.patch"
++for patch in $PATCHES; do
++  echo "Applying:"
++  echo "$INFINALITY_BUNDLE/$patch ..."
++  patch -p1 < $INFINALITY_BUNDLE/$patch
++done
++
+ CFLAGS="$SLKCFLAGS" \
+ ./configure \
+   --prefix=/usr \

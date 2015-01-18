@@ -1,0 +1,54 @@
+--- source/x/fontconfig/fontconfig.SlackBuild	2013-05-19 06:01:14.000000000 +0530
++++ source/x/fontconfig/fontconfig.SlackBuild.new	2015-01-18 15:14:46.461805510 +0530
+@@ -68,6 +68,17 @@
+   \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+   -exec chmod 644 {} \;
+ 
++# infinality-bundle
++INFINALITY_BUNDLE=$CWD/infinality-bundle
++cp -r $INFINALITY_BUNDLE/conf.d.infinality .
++# 00-fonts.conf.in.patch is in conflict with fontconfig.font.dir.list.diff.gz (from Pat)
++PATCHES="01-configure.patch 02-configure.ac.patch 03-Makefile.in.patch 04-Makefile.conf.d.patch"
++for patch in $PATCHES; do
++    echo "Applying:"
++    echo "$INFINALITY_BUNDLE/fontconfig_patches/$patch ..."
++    patch -p1 < $INFINALITY_BUNDLE/fontconfig_patches/$patch || exit 1
++done
++
+ # The wonderful extended version of the font so generously
+ # opened up for free modification and distribution by one
+ # for the previously proprietary font founderies, and that
+@@ -80,6 +91,12 @@
+ # index ugly bitmapped fonts):
+ zcat $CWD/fontconfig.font.dir.list.diff.gz | patch -p1 --verbose --backup --suffix=.orig || exit 1
+ 
++# infinality-bundle
++aclocal
++libtoolize -f
++automake --add-missing -fi
++autoreconf --install
++
+ CFLAGS=$SLKCFLAGS \
+ ./configure \
+   --prefix=/usr \
+@@ -87,6 +104,7 @@
+   --mandir=/usr/man \
+   --sysconfdir=/etc \
+   --with-templatedir=/etc/fonts/conf.avail \
++  --with-templateinfdir=/etc/fonts/conf.avail.infinality \
+   --with-baseconfigdir=/etc/fonts \
+   --with-configdir=/etc/fonts/conf.d \
+   --with-xmldir=/etc/fonts \
+@@ -178,6 +196,12 @@
+   )
+ fi
+ 
++# infinality-bundle
++install -m0644 $INFINALITY_BUNDLE/fontconfig_patches/29-replace-bitmap-fonts.conf \
++  $PKG/etc/fonts/conf.avail/29-replace-bitmap-fonts.conf || exit 1
++cp -r $INFINALITY_BUNDLE/doc/fontconfig-infinality-ultimate \
++  $PKG/usr/doc/fontconfig-$VERSION/ || exit 1
++
+ mkdir $PKG/install
+ cat $CWD/slack-desc > $PKG/install/slack-desc
+ zcat $CWD/doinst.sh.gz > $PKG/install/doinst.sh

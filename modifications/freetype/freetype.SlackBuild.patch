@@ -1,0 +1,37 @@
+--- patches/source/freetype/freetype.SlackBuild	2015-01-14 03:48:55.000000000 +0530
++++ patches/source/freetype/freetype.SlackBuild.new	2015-01-18 14:18:44.921904000 +0530
+@@ -20,6 +20,7 @@
+ #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
++set -e
+ 
+ PKGNAM=freetype
+ VERSION=${VERSION:-$(echo $PKGNAM-*.tar.xz | cut -d - -f 2 | rev | cut -f 3- -d . | rev)}
+@@ -80,6 +81,15 @@
+ #   http://www.freetype.org/patents.html
+ #zcat $CWD/freetype.subpixel.rendering.diff.gz | patch -p1 --verbose || exit 1
+ 
++# infinality-bundle
++INFINALITY_BUNDLE=$CWD/infinality-bundle
++PATCHES="freetype-2.2.1-enable-valid.patch freetype-2.4.12-pkgconfig.patch infinality-2.5.patch autofit.patch"
++for patch in $PATCHES; do
++  echo "Applying:"
++  echo "$INFINALITY_BUNDLE/$patch ..."
++  patch -p1 < $INFINALITY_BUNDLE/$patch
++done
++
+ chown -R root:root .
+ CFLAGS="$SLKCFLAGS" make setup CFG="--prefix=/usr --libdir=/usr/lib${LIBDIRSUFFIX} --build=$ARCH-slackware-linux"
+ make $NUMJOBS || make || exit 1
+@@ -112,6 +122,10 @@
+ # too much
+ rm -rf $PKG/usr/doc/freetype-$VERSION/docs/reference
+ 
++# infinality-bundle
++install -D -m0755 $INFINALITY_BUNDLE/infinality-settings.sh \
++  $PKG/etc/profile.d/infinality-settings.sh
++
+ mkdir $PKG/install
+ cat $CWD/slack-desc > $PKG/install/slack-desc
+ 

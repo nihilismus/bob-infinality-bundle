@@ -20,8 +20,9 @@ fontconfig-infinality-ultimate."*
   root@darkstar:~:/tmp# git clone https://github.com/nihilismus/bob-infinality-bundle
   ```
 
-2.  Build, remove and install packages following this order: first `source/l/freetype`, then
-    `source/x/fontconfig` and finally `source/l/cairo` or just execute as root `install.sh`.
+2.  Download the sources using `bob-sources.sh`.
+
+3. Build and install the packages using `install.sh`.
 
 ## Notes
 
