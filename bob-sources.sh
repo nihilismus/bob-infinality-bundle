@@ -21,8 +21,16 @@ for slackbuild in $SLACKBUILDS; do
   lftp -c "mirror -c -e -p $MIRROR/$slackbuild $slackbuild"
 done
 
+VERSION=2015-01-01
+
+echo "Downloading modifications..."
+wget -N https://github.com/bohoomil/fontconfig-ultimate/archive/$VERSION.tar.gz
+tar xpf $VERSION.tar.gz
+
 echo "Copying modifications..."
-  cp -r modifications/freetype/* patches/source/freetype/
+  mkdir patches/source/freetype/infinality-bundle
+  cp -r fontconfig-ultimate-$VERSION/freetype/* patches/source/freetype/infinality-bundle/
+  cp modifications/freetype/freetype.SlackBuild.patch patches/source/freetype/
   cp -r modifications/fontconfig/* source/x/fontconfig/
   cp -r modifications/cairo/* source/l/cairo
 

@@ -14,7 +14,7 @@
  
 +# infinality-bundle
 +INFINALITY_BUNDLE=$CWD/infinality-bundle
-+PATCHES="freetype-2.2.1-enable-valid.patch freetype-2.4.12-pkgconfig.patch infinality-2.5.patch autofit.patch"
++PATCHES="01-freetype-2.5.5-enable-valid.patch 02-ftsmooth-2.5.5.patch 04-infinality-2.5.5-2014.12.30.patch"
 +for patch in $PATCHES; do
 +  echo "Applying:"
 +  echo "$INFINALITY_BUNDLE/$patch ..."
