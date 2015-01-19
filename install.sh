@@ -16,7 +16,7 @@ sleep 3
 
 ( cd patches/source/freetype
   sh freetype.SlackBuild
-  upgradepkg --install-new --reinstall $TMP/freetype*.txz
+  #upgradepkg --install-new --reinstall $TMP/freetype*.txz
 ) || exit 1
 
 echo "###"
@@ -26,7 +26,7 @@ sleep 3
 
 ( cd source/x/fontconfig
   sh fontconfig.SlackBuild
-  upgradepkg --install-new --reinstall $TMP/fontconfig*.txz
+  #upgradepkg --install-new --reinstall $TMP/fontconfig*.txz
 ) || exit 1
 
 echo "###"
@@ -36,7 +36,7 @@ sleep 3
 
 ( cd source/l/cairo
   sh cairo.SlackBuild
-  upgradepkg --install-new --reinstall $TMP/cairo*.txz
+  #upgradepkg --install-new --reinstall $TMP/cairo*.txz
 ) || exit 1
 
-echo "Finished."
+echo "Finished. Built packages can be found in /tmp/bob-infinality-bundle"
