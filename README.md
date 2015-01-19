@@ -42,6 +42,6 @@ fontconfig-infinality-ultimate."*
 
 ## Original source
 
-https://github.com/bohoomil/fontconfig-ultimate
+https://github.com/nihilismus/bob-infinality-bundle
 
 
