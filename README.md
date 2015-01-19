@@ -40,8 +40,3 @@ fontconfig-infinality-ultimate."*
 *  Backup /etc/fonts/ before you install fontconfig and remove any personal configuration
    (~/.fonts.conf, ~/.fonts.conf.d or ~/.config/fontconfig) to avoid any issue.
 
-## Original source
-
-https://github.com/nihilismus/bob-infinality-bundle
-
-
