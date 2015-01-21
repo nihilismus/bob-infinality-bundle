@@ -40,3 +40,18 @@ fontconfig-infinality-ultimate."*
 *  Backup /etc/fonts/ before you install fontconfig and remove any personal configuration
    (~/.fonts.conf, ~/.fonts.conf.d or ~/.config/fontconfig) to avoid any issue.
 
+
+## Freetype patches
+
+*  Location: source/l/freetype/infinality-bundle
+*  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/pkgbuild/01_freetype2-iu
+
+## Fontconfig patches
+
+*  Location: source/x/fontconfig/infinality-bundle
+*  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/pkgbuild/02_fontconfig-iu
+
+## Cairo patches
+
+*  Location: source/l/cairo/infinality-bundle
+*  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/pkgbuild/03_cairo-iu
