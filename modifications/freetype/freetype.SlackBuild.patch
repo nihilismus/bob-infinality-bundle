@@ -1,6 +1,6 @@
---- patches/source/freetype/freetype.SlackBuild	2015-01-14 03:48:55.000000000 +0530
-+++ patches/source/freetype/freetype.SlackBuild.new	2015-01-18 16:51:33.282633938 +0530
-@@ -20,6 +20,7 @@
+--- patches/source/freetype/freetype.SlackBuild.orig	2015-01-22 20:08:59.528932411 +0530
++++ patches/source/freetype/freetype.SlackBuild	2015-01-22 20:12:05.152926926 +0530
+@@ -20,10 +20,11 @@
  #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  
@@ -8,6 +8,11 @@
  
  PKGNAM=freetype
  VERSION=${VERSION:-$(echo $PKGNAM-*.tar.xz | cut -d - -f 2 | rev | cut -f 3- -d . | rev)}
+-BUILD=${BUILD:-1_slack14.1}
++BUILD=${BUILD:-1.2_slack14.1}
+ 
+ NUMJOBS=${NUMJOBS:-" -j7 "}
+ 
 @@ -80,6 +81,15 @@
  #   http://www.freetype.org/patents.html
  #zcat $CWD/freetype.subpixel.rendering.diff.gz | patch -p1 --verbose || exit 1
@@ -24,16 +29,17 @@
  chown -R root:root .
  CFLAGS="$SLKCFLAGS" make setup CFG="--prefix=/usr --libdir=/usr/lib${LIBDIRSUFFIX} --build=$ARCH-slackware-linux"
  make $NUMJOBS || make || exit 1
-@@ -112,9 +122,13 @@
+@@ -112,9 +122,14 @@
  # too much
  rm -rf $PKG/usr/doc/freetype-$VERSION/docs/reference
  
 +# infinality-bundle
 +install -D -m0755 $INFINALITY_BUNDLE/generic_settings/infinality-settings.sh \
-+  $PKG/etc/profile.d/infinality-settings.sh
++  $PKG/etc/profile.d/infinality-settings.sh.new
 +
  mkdir $PKG/install
  cat $CWD/slack-desc > $PKG/install/slack-desc
++cat $CWD/doinst.sh > $PKG/install/doinst.sh
  
  cd $PKG
 -/sbin/makepkg -l y -c n $TMP/freetype-$VERSION-$ARCH-$BUILD.txz

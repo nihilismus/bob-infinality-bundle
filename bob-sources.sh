@@ -30,7 +30,7 @@ tar xpf $VERSION.tar.gz
 echo "Copying modifications..."
   mkdir patches/source/freetype/infinality-bundle
   cp -r fontconfig-ultimate-$VERSION/freetype/* patches/source/freetype/infinality-bundle/
-  cp modifications/freetype/freetype.SlackBuild.patch patches/source/freetype/
+  cp -r modifications/freetype/* patches/source/freetype/
   cp -r modifications/fontconfig/* source/x/fontconfig/
   cp -r modifications/cairo/* source/l/cairo
 
