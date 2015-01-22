@@ -1,0 +1,5 @@
+source
+patches
+*.tar.gz
+fontconfig-ultimate-*
+*~
