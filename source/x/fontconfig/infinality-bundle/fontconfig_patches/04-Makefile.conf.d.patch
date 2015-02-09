@@ -1,9 +1,13 @@
---- a/conf.d/Makefile.am	2013-05-13 05:10:36.000000000 +0200
-+++ b/conf.d/Makefile.am	2013-05-25 23:19:21.949016131 +0200
-@@ -25,27 +25,11 @@ BUILT_SOURCES = README
- DOC_SOURCES = README.in
+--- a/conf.d/Makefile.am	2014-01-20 09:14:19.000000000 +0100
++++ b/conf.d/Makefile.am	2014-03-24 22:42:04.326965609 +0100
+@@ -21,26 +21,9 @@
+ #  TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ #  PERFORMANCE OF THIS SOFTWARE.
+
+-BUILT_SOURCES = README
+-DOC_SOURCES = README.in
  DOC_FILES = $(DOC_SOURCES:.in=)
- 
+
 -CONF_LINKS = \
 -	10-scale-bitmap-fonts.conf \
 -	20-unhint-small-vera.conf \
@@ -20,19 +24,17 @@
 -	69-unifont.conf \
 -	80-delicious.conf \
 -	90-synthetic.conf
-+CONF_LINKS = 
- 
++CONF_LINKS =
+
  EXTRA_DIST = $(template_DATA) $(DOC_SOURCES)
  CLEANFILES = $(DOC_FILES)
- 
--configdir=$(CONFIGDIR)
- config_DATA = $(DOC_FILES)
- 
- templatedir = $(TEMPLATEDIR)
-@@ -83,21 +67,4 @@ template_DATA =				\
- README: $(srcdir)/README.in
- 	sed "s|\@TEMPLATEDIR\@|$(templatedir)|" $< > $@
- 
+@@ -80,24 +63,4 @@ template_DATA =				\
+ 	80-delicious.conf		\
+ 	90-synthetic.conf
+
+-README: $(srcdir)/README.in
+-	sed "s|\@TEMPLATEDIR\@|$(templatedir)|" $< > $@
+-
 -install-data-hook:
 -	mkdir -p $(DESTDIR)$(configdir)
 -	@(echo cd $(DESTDIR)$(configdir);			\
@@ -51,20 +53,32 @@
 -	  done)
 -
  -include $(top_srcdir)/git.mk
---- a/conf.d/Makefile.in	2013-05-20 10:44:34.000000000 +0200
-+++ b/conf.d/Makefile.in	2013-05-25 23:21:45.680016564 +0200
-@@ -134,7 +134,7 @@ am__uninstall_files_from_dir = { \
+--- a/conf.d/Makefile.in	2014-03-24 07:04:15.000000000 +0100
++++ b/conf.d/Makefile.in	2014-03-24 22:42:04.326965609 +0100
+@@ -102,7 +102,7 @@ POST_UNINSTALL = :
+ build_triplet = @build@
+ host_triplet = @host@
+ subdir = conf.d
+-DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am README
++DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+ am__aclocal_m4_deps = $(top_srcdir)/m4/ac_check_symbol.m4 \
+ 	$(top_srcdir)/m4/ax_cc_for_build.m4 \
+@@ -163,7 +163,7 @@ am__uninstall_files_from_dir = { \
      || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
           $(am__cd) "$$dir" && rm -f $$files; }; \
    }
 -am__installdirs = "$(DESTDIR)$(configdir)" "$(DESTDIR)$(templatedir)"
 +am__installdirs = "$(DESTDIR)$(templatedir)"
  DATA = $(config_DATA) $(template_DATA)
+ am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
  DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
- ACLOCAL = @ACLOCAL@
-@@ -299,22 +299,7 @@ xmldir = @xmldir@
- BUILT_SOURCES = README
- DOC_SOURCES = README.in
+@@ -324,25 +324,8 @@ target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-BUILT_SOURCES = README
+-DOC_SOURCES = README.in
  DOC_FILES = $(DOC_SOURCES:.in=)
 -CONF_LINKS = \
 -	10-scale-bitmap-fonts.conf \
@@ -82,11 +96,11 @@
 -	69-unifont.conf \
 -	80-delicious.conf \
 -	90-synthetic.conf
-+CONF_LINKS = 
- 
++CONF_LINKS =
+
  EXTRA_DIST = $(template_DATA) $(DOC_SOURCES)
  CLEANFILES = $(DOC_FILES)
-@@ -476,7 +461,7 @@ check: $(BUILT_SOURCES)
+@@ -504,7 +487,7 @@ check: $(BUILT_SOURCES)
  	$(MAKE) $(AM_MAKEFLAGS) check-am
  all-am: Makefile $(DATA)
  installdirs:
@@ -95,3 +109,13 @@
  	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
  	done
  install: $(BUILT_SOURCES)
+@@ -625,9 +608,6 @@ uninstall-am: uninstall-configDATA unins
+ 	uninstall-local uninstall-templateDATA
+
+
+-README: $(srcdir)/README.in
+-	sed "s|\@TEMPLATEDIR\@|$(templatedir)|" $< > $@
+-
+ install-data-hook:
+ 	mkdir -p $(DESTDIR)$(configdir)
+ 	@(echo cd $(DESTDIR)$(configdir);			\

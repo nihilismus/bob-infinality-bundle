@@ -21,24 +21,24 @@
 #  TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 #  PERFORMANCE OF THIS SOFTWARE.
 
-DOC_FILES= \
-	README
+BUILT_SOURCES = README
+DOC_SOURCES = README.in
+DOC_FILES = $(DOC_SOURCES:.in=)
 
 CONF_LINKS = \
 	10-base-rendering.conf    \
-	31-fix-cantarell.conf   \
-	37-repl-global.conf   \
-	38-repl-tt-traced-bitmap.conf   \
-	39-repl-corrective.conf   \
-	40-non-latin.conf    \
-	45-latin.conf   \
+	28-user.conf		\
+	29-local.conf		\
+	35-repl-custom.conf		\
+	37-repl-webfonts.conf		\
+	38-repl-webfonts-custom.conf		\
+	40-non-latin-microsoft.conf    \
+	40-non-latin-misc.conf    \
+	45-latin-microsoft.conf   \
+	45-latin-misc.conf   \
 	49-sansserif.conf   \
-	50-user.conf    \
-	51-local.conf   \
-	60-latin.conf   \
-	65-non-latin.conf   \
-	66-aliases-wine.conf    \
 	68-override.conf    \
+	67-override-aliases.conf		\
 	82-no-embedded-bitmaps.conf   \
 	82-no-force-autohint.conf   \
 	82-no-ttf-as-bitmap.conf    \
@@ -46,33 +46,39 @@ CONF_LINKS = \
 	83-yes-postscript.conf    \
 	88-forced-synthetic.conf    \
 	90-non-tt-fonts.conf    \
-	90-tt-fonts.conf    \
-	92-selective-rendering.conf   \
-	93-final-lang-spec.conf   \
+	90-tt-fonts-microsoft.conf    \
+	90-tt-fonts-misc.conf    \
+	92-selective-rendering-microsoft.conf   \
+	92-selective-rendering-misc.conf   \
 	93-final-rendering.conf   \
 	94-no-synthetic.conf    \
-	95-reject.conf
+	95-reject.conf		\
+	97-selective-rendering-custom.conf
 
-EXTRA_DIST = $(templateinf_DATA) $(DOC_FILES)
+EXTRA_DIST = $(templateinf_DATA) $(DOC_SOURCES)
+CLEANFILES = $(DOC_FILES)
 
-configdir=$(CONFIGDIR)
+configdir = $(CONFIGDIR)
 config_DATA = $(DOC_FILES)
 
 templateinfdir = $(TEMPLATEINFDIR)
 templateinf_DATA =				\
 	10-base-rendering.conf    \
-	31-fix-cantarell.conf   \
-	37-repl-global.conf   \
-	38-repl-tt-traced-bitmap.conf   \
-	39-repl-corrective.conf   \
-	40-non-latin.conf    \
-	45-latin.conf   \
+	10-scale-bitmap-fonts.conf	\
+	28-user.conf		\
+	29-local.conf		\
+	35-repl-custom.conf		\
+	36-repl-missing-glyphs.conf  \
+	37-repl-webfonts.conf		\
+	38-repl-proggy-bitmap.conf   \
+	38-repl-terminus-bitmap.conf   \
+	38-repl-webfonts-custom.conf		\
+	40-non-latin-microsoft.conf    \
+	40-non-latin-misc.conf    \
+	45-latin-microsoft.conf   \
+	45-latin-misc.conf   \
 	49-sansserif.conf   \
-	50-user.conf    \
-	51-local.conf   \
-	60-latin.conf   \
-	65-non-latin.conf   \
-	66-aliases-wine.conf    \
+	67-override-aliases.conf		\
 	68-override.conf    \
 	82-no-bitmaps.conf    \
 	82-no-embedded-bitmaps.conf   \
@@ -86,12 +92,17 @@ templateinf_DATA =				\
 	83-yes-ttf-as-bitmap.conf   \
 	88-forced-synthetic.conf    \
 	90-non-tt-fonts.conf    \
-	90-tt-fonts.conf    \
-	92-selective-rendering.conf   \
-	93-final-lang-spec.conf   \
+	90-tt-fonts-microsoft.conf    \
+	90-tt-fonts-misc.conf    \
+	92-selective-rendering-microsoft.conf   \
+	92-selective-rendering-misc.conf   \
 	93-final-rendering.conf   \
 	94-no-synthetic.conf    \
-	95-reject.conf
+	95-reject.conf	\
+	97-selective-rendering-custom.conf
+
+README: $(srcdir)/README.in
+	sed "s|\@TEMPLATEINFDIR\@|$(templateinfdir)|" $< > $@
 
 install-data-hook:
 	mkdir -p $(DESTDIR)$(configdir)

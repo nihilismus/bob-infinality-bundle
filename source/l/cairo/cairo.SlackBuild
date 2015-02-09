@@ -70,7 +70,7 @@ find . \
   -exec chmod 644 {} \;
 
 INFINALITY_BUNDLE=$CWD/infinality-bundle
-PATCHES="cairo-respect-fontconfig.patch cairo-1.12.8-expose_snapshot-1.patch"
+PATCHES="cairo-respect-fontconfig_pb.patch cairo-1.12.16-lto-optional.patch"
 for patch in $PATCHES; do
   echo "Applying:"
   echo "$INFINALITY_BUNDLE/$patch ..."

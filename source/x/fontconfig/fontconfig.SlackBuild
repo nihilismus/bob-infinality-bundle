@@ -71,7 +71,7 @@ find . \
 INFINALITY_BUNDLE=$CWD/infinality-bundle
 cp -r $INFINALITY_BUNDLE/conf.d.infinality .
 # 00-fonts.conf.in.patch is in conflict with fontconfig.font.dir.list.diff.gz (from Pat)
-PATCHES="01-configure.patch 02-configure.ac.patch 03-Makefile.in.patch 04-Makefile.conf.d.patch"
+PATCHES="01-configure.patch 02-configure.ac.patch 03-Makefile.in.patch 04-Makefile.conf.d.patch 05-Makefile.am.in.patch fc-cache.c.patch"
 for patch in $PATCHES; do
     echo "Applying:"
     echo "$INFINALITY_BUNDLE/fontconfig_patches/$patch ..."
@@ -196,8 +196,6 @@ if [ -d $PKG/usr/man ]; then
 fi
 
 # infinality-bundle
-install -m0644 $INFINALITY_BUNDLE/fontconfig_patches/29-replace-bitmap-fonts.conf \
-  $PKG/etc/fonts/conf.avail/29-replace-bitmap-fonts.conf || exit 1
 cp -r $INFINALITY_BUNDLE/doc/fontconfig-infinality-ultimate \
   $PKG/usr/doc/fontconfig-$VERSION/ || exit 1
 

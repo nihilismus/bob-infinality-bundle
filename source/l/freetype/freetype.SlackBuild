@@ -83,7 +83,7 @@ zcat $CWD/freetype.illadvisederror.diff.gz | patch -p1 --verbose || exit 1
 
 # infinality-bundle
 INFINALITY_BUNDLE=$CWD/infinality-bundle
-PATCHES="freetype-2.2.1-enable-valid.patch freetype-2.4.12-pkgconfig.patch infinality-2.5.patch autofit.patch"
+PATCHES="01-freetype-2.5.5-enable-valid.patch 02-ftsmooth-2.5.5.patch 03-upstream-2015.01.23.patch 04-infinality-2.5.5-2015.01.23.patch"
 for patch in $PATCHES; do
   echo "Applying:"
   echo "$INFINALITY_BUNDLE/$patch ..."
@@ -110,6 +110,9 @@ rm -f $PKG/usr/lib${LIBDIRSUFFIX}/*.a
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" \
   | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
+
+mv $PKG/usr/share/man $PKG/usr/man
+find $PKG/usr/man -type f -exec gzip -9 {} \;
 
 mkdir -p $PKG/usr/doc/freetype-$VERSION
 cp -a \
