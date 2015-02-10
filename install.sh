@@ -29,14 +29,14 @@ sleep 3
   upgradepkg --install-new --reinstall $TMP/fontconfig*.txz
 ) || exit 1
 
-echo "###"
-echo "### Building: source/l/cairo ..."
-echo "###"
-sleep 3
-
-( cd source/l/cairo
-  sh cairo.SlackBuild
-  upgradepkg --install-new --reinstall $TMP/cairo*.txz
-) || exit 1
+#echo "###"
+#echo "### Building: source/l/cairo ..."
+#echo "###"
+#sleep 3
+#
+#( cd source/l/cairo
+#  sh cairo.SlackBuild
+#  upgradepkg --install-new --reinstall $TMP/cairo*.txz
+#) || exit 1
 
 echo "Finished."

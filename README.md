@@ -24,8 +24,12 @@ issue.
   root@darkstar:~# git clone https://github.com/nihilismus/bob-infinality-bundle
   ```
 
-2.  Build, remove and install packages following this order: first `source/l/freetype`, then
-    `source/x/fontconfig` and finally `source/l/cairo` or just execute as root `install.sh`.
+2.  Build, remove and install packages following this order:
+
+    1.  `source/l/freetype`.
+    2.  `source/x/fontconfig`
+
+    Or just execute as root `install.sh`.
 
 ## Notes
 
@@ -54,6 +58,10 @@ issue.
    *  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/2015-01-31
 
 *  Cairo
+
+**Important**: the installation of this affects Qemu when using `-display gtk`, it just shows
+a blank screen while your virtual machine runs. So this is not builded/installed by
+`install.sh`.
 
    *  Location: source/l/cairo/infinality-bundle
    *  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/2014-06-01/03_cairo-iu
