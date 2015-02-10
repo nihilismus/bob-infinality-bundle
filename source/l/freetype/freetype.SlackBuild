@@ -102,7 +102,7 @@ make install DESTDIR=$PKG
 mkdir -p $PKG/usr/include
 ( cd $PKG/usr/include
   rm -rf freetype
-  ln -sf freetype2/freetype .
+  ln -sf freetype2 freetype
 )
 
 # Can't imagine a lot of use for this:
