@@ -57,11 +57,11 @@ issue.
    *  Location: source/x/fontconfig/infinality-bundle
    *  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/2015-01-31
 
-*  Cairo
-
-**Important**: the installation of this affects Qemu when using `-display gtk`, it just shows
+**Important**: the installation of Cairo affects Qemu when using `-display gtk`, it just shows
 a blank screen while your virtual machine runs. So this is not builded/installed by
 `install.sh`.
+
+*  Cairo
 
    *  Location: source/l/cairo/infinality-bundle
    *  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/2014-06-01/03_cairo-iu
