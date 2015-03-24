@@ -83,11 +83,11 @@ zcat $CWD/freetype.illadvisederror.diff.gz | patch -p1 --verbose || exit 1
 
 # infinality-bundle
 INFINALITY_BUNDLE=$CWD/infinality-bundle
-PATCHES="01-freetype-2.5.5-enable-valid.patch 02-ftsmooth-2.5.5.patch 03-upstream-2015.01.23.patch 04-infinality-2.5.5-2015.01.23.patch"
-for patch in $PATCHES; do
-  echo "Applying:"
-  echo "$INFINALITY_BUNDLE/$patch ..."
-  patch -p1 < $INFINALITY_BUNDLE/$patch
+ls -1 $INFINALITY_BUNDLE/*.patch | while read patch; do
+  echo
+  echo "Applying: $patch ..."
+  echo
+  patch -p1 < $patch
 done
 
 chown -R root:root .

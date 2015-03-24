@@ -71,11 +71,11 @@ find . \
 INFINALITY_BUNDLE=$CWD/infinality-bundle
 cp -r $INFINALITY_BUNDLE/conf.d.infinality .
 # 00-fonts.conf.in.patch is in conflict with fontconfig.font.dir.list.diff.gz (from Pat)
-PATCHES="01-configure.patch 02-configure.ac.patch 03-Makefile.in.patch 04-Makefile.conf.d.patch 05-Makefile.am.in.patch fc-cache.c.patch"
-for patch in $PATCHES; do
-    echo "Applying:"
-    echo "$INFINALITY_BUNDLE/fontconfig_patches/$patch ..."
-    patch -p1 < $INFINALITY_BUNDLE/fontconfig_patches/$patch || exit 1
+ls -1 $INFINALITY_BUNDLE/fontconfig_patches/*.patch | grep -v 00-fonts.conf.in.patch | while read patch; do
+  echo
+  echo "Applying: $patch ..."
+  echo
+  patch -p1 < $patch
 done
 
 # The wonderful extended version of the font so generously
@@ -198,6 +198,10 @@ fi
 # infinality-bundle
 cp -r $INFINALITY_BUNDLE/doc/fontconfig-infinality-ultimate \
   $PKG/usr/doc/fontconfig-$VERSION/ || exit 1
+# broken link
+rm -f $PKG/usr/doc/fontconfig-$VERSION/INSTALL
+# empty file
+rm -f $PKG/usr/doc/fontconfig-$VERSION/NEWS
 
 mkdir $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
