@@ -26,8 +26,9 @@ issue.
 
 2.  Build, remove and install packages following this order:
 
-    1.  `source/l/freetype`.
+    1.  `source/l/freetype`
     2.  `source/x/fontconfig`
+    3.  `source/l/cairo`
 
     Or just execute as root `install.sh`.
 
@@ -41,27 +42,10 @@ issue.
    configure some aspects of the font rendering, please check:
    *  `/etc/profile.d/infinality-settings.sh`
    *  `/usr/doc/fontconfig-*/fontconfig-infinality-ultimate`
-*  You can see the differences between the default font rendering and the patched one:
+*  You can see the differences between the default font rendering and the patched one, (from
+   Slackware 14.1):
    *  Default: https://www.dropbox.com/s/xiyeyvs457nb1um/slackware-14.1-default-font.png
    *  Patched: https://www.dropbox.com/s/awqgc8wg3djviqe/slackware-14.1-patched-font.png
-
-## Patches
-
-*  Freetype
-
-   *  Location: source/l/freetype/infinality-bundle
-   *  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/2015-01-31/freetype
-
-*  Fontconfig
-
-   *  Location: source/x/fontconfig/infinality-bundle
-   *  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/2015-01-31
-
-**Important**: the installation of Cairo affects Qemu when using `-display gtk`, it just shows
+*  **Important**, the installation of Cairo affects Qemu when using `-display gtk`, it just shows
 a blank screen while your virtual machine runs. So this is not builded/installed by
 `install.sh`.
-
-*  Cairo
-
-   *  Location: source/l/cairo/infinality-bundle
-   *  Origin: https://github.com/bohoomil/fontconfig-ultimate/tree/2014-06-01/03_cairo-iu
