@@ -15,7 +15,7 @@ echo "###"
 sleep 3
 
 ( cd source/l/freetype
-  sh freetype.SlackBuild
+  sh freetype.SlackBuild || exit 1
   upgradepkg --install-new --reinstall $TMP/freetype*.txz
 ) || exit 1
 
@@ -25,18 +25,18 @@ echo "###"
 sleep 3
 
 ( cd source/x/fontconfig
-  sh fontconfig.SlackBuild
+  sh fontconfig.SlackBuild || exit 1
   upgradepkg --install-new --reinstall $TMP/fontconfig*.txz
 ) || exit 1
 
-#echo "###"
-#echo "### Building: source/l/cairo ..."
-#echo "###"
-#sleep 3
-#
-#( cd source/l/cairo
-#  sh cairo.SlackBuild
-#  upgradepkg --install-new --reinstall $TMP/cairo*.txz
-#) || exit 1
+echo "###"
+echo "### Building: source/l/cairo ..."
+echo "###"
+sleep 3
+
+( cd source/l/cairo
+  sh cairo.SlackBuild || exit 1
+  upgradepkg --install-new --reinstall $TMP/cairo*.txz
+) || exit 1
 
 echo "Finished."

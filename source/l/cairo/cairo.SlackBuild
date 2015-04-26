@@ -20,7 +20,6 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-set -e
 
 PKGNAM=cairo
 VERSION=${VERSION:-$(echo $PKGNAM-*.tar.?z* | rev | cut -f 3- -d . | cut -f 1 -d - | rev)}
@@ -69,12 +68,13 @@ find . \
   \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
   -exec chmod 644 {} \;
 
+# infinality-bundle
 INFINALITY_BUNDLE=$CWD/infinality-bundle
-PATCHES="cairo-respect-fontconfig_pb.patch cairo-1.12.16-lto-optional.patch"
-for patch in $PATCHES; do
-  echo "Applying:"
-  echo "$INFINALITY_BUNDLE/$patch ..."
-  patch -p1 < $INFINALITY_BUNDLE/$patch
+ls -1 $INFINALITY_BUNDLE/*.patch | while read patch; do
+  echo
+  echo "Applying: $patch ..."
+  echo
+  patch -p1 < $patch
 done
 
 CFLAGS="$SLKCFLAGS" \
@@ -90,26 +90,25 @@ CFLAGS="$SLKCFLAGS" \
   --disable-trace \
   --enable-xlib \
   --enable-xcb \
-  --enable-xcb-shm \
-  --enable-xlib-xcb \
   --enable-ps \
   --enable-pdf \
   --enable-svg \
   --enable-tee \
+  --enable-ft \
+  --enable-gl \
   --enable-gobject \
   --enable-xml \
   --build=$ARCH-slackware-linux
 
 # None of these are 'stable' yet...
 #  --enable-qt \
-#  --enable-gl \
 #  --enable-drm \
-#  --enable-xlib-xcb \
-#  --enable-xcb-shm \
 
 # Not sure if these two are needed / useful yet; --enable-xcb is now default
 #  --enable-xcb-shm \
+#  ^^ may cause GTK+3 instability
 #  --enable-xlib-xcb \
+#  ^^  this one caused a GIMP slowdown
 
 # Skipping this, because it causes a dependency on the specific
 # version of binutils installed at compile time:

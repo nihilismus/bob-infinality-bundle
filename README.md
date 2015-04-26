@@ -34,7 +34,8 @@ issue.
 
 ## Notes
 
-*  At this moment these SlackBuilds are from and for **Slackware Linux -current**.
+*  At this moment these SlackBuilds are from and for **Slackware64 Linux -current**, but they
+   should work with **Slackware Linux -current** also.
 *  I tried to make the minimal modificactions to the originals Slackbuilds.
 *  There is not need to select a type of font rendering (Windows, Apple or Ubuntu)
    since the *"aim of infinality-bundle is to make use of the vast potential hidden
@@ -46,6 +47,3 @@ issue.
    Slackware 14.1):
    *  Default: https://www.dropbox.com/s/xiyeyvs457nb1um/slackware-14.1-default-font.png
    *  Patched: https://www.dropbox.com/s/awqgc8wg3djviqe/slackware-14.1-patched-font.png
-*  **Important**, the installation of Cairo affects Qemu when using `-display gtk`, it just shows
-a blank screen while your virtual machine runs. So this is not builded/installed by
-`install.sh`.
